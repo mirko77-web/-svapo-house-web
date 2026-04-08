@@ -34,8 +34,6 @@
 
 <body>
 
-  <!-- SFONDO NUVOLOSO -->
-  <canvas id="cloudCanvas" aria-hidden="true"></canvas>
 
   <main>
 
@@ -48,62 +46,45 @@
 
       <div class="hero-inner">
 
-        <!-- CONTENUTO TESTUALE -->
+        <!-- LOGO CENTRALE GRANDE -->
+        <div class="hero-logo-wrap">
+          <canvas id="smokeLeft" aria-hidden="true"></canvas>
+          <canvas id="smokeRight" aria-hidden="true"></canvas>
+          <img
+            src="svapo.png"
+            alt="Svapo House"
+            class="hero-logo-main"
+            loading="eager"
+          />
+        </div>
+
+        <!-- TITOLO + TESTO -->
         <header class="hero-content">
           <p class="hero-kicker">Svapo House • Avetrana</p>
-
-          <!-- LOGO + TITOLO AFFIANCATI -->
-          <div class="hero-title-row">
-          
-            <h1 class="hero-title">Vape,<br>liquidi e<br>dispositivi<br>con stile.</h1>
-          </div>
-
+          <h1 class="hero-title">Vape, liquidi e dispositivi con stile.</h1>
           <p class="hero-text">
             Scopri una selezione curata di liquidi, pod system, box mod e accessori.
             Un'esperienza premium, semplice e veloce.
           </p>
-
           <div class="hero-actions">
             <a href="#prodotti" class="btn btn-primary">Scopri i prodotti</a>
             <a href="#contatti" class="btn btn-secondary">Contattaci</a>
           </div>
-
-        
         </header>
 
-        <!-- VISUAL: LOGO + EFFETTI FUMO -->
-        <div class="hero-visual">
-          <div class="logo-wrapper">
-            <!-- Fumo sinistro -->
-            <canvas id="smokeLeft" aria-hidden="true"></canvas>
-            <!-- Fumo destro -->
-            <canvas id="smokeRight" aria-hidden="true"></canvas>
-
-            <!-- Logo grande lato destro hero -->
-            <img
-              src="svapo.png"
-              alt="Svapo House"
-              class="logo"
-              width="300"
-              height="300"
-              loading="eager"
-            />
-          </div>
-        </div>
-           <!-- IMMAGINE PICCOLA (sostituisce le meta 01-02-03) -->
-          <div class="hero-thumb-wrap">
-            <img
-              src="svapo-mix.png"
-              alt="Prodotti Svapo House"
-              class="hero-thumb"
-              width="480"
-              height="120"
-              loading="lazy"
-            />
-          </div>
-
       </div>
-     
+
+      <!-- IMMAGINE SVAPO MIX – FULL WIDTH CON BLUR -->
+      <div class="hero-banner-wrap">
+        <img
+          src="svapo-mix.png"
+          alt="Prodotti Svapo House"
+          class="hero-banner"
+          loading="lazy"
+        />
+        <div class="hero-banner-overlay" aria-hidden="true"></div>
+      </div>
+
     </section>
 
     <!-- ============================================================

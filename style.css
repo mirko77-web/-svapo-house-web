@@ -25,7 +25,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg);
+  background: #08090f;
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -43,8 +43,8 @@ img { max-width: 100%; height: auto; display: block; }
   height: 100vh;
   z-index: -1;
   pointer-events: none;
-  filter: blur(55px) brightness(1.15);
-  opacity: 0.75;
+  filter: blur(40px);
+  opacity: 1;
 }
 
 /* ============================================================
@@ -52,11 +52,11 @@ img { max-width: 100%; height: auto; display: block; }
 ============================================================ */
 .hero {
   position: relative;
-  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 120px 40px;
   overflow: hidden;
+  padding-bottom: 0;
 }
 
 .hero-bg {
@@ -72,155 +72,127 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg,
-    rgba(5,7,13,0.95) 0%,
-    rgba(5,7,13,0.65) 55%,
-    rgba(5,7,13,0.20) 100%);
+  background: linear-gradient(180deg,
+    rgba(5,7,13,0.6) 0%,
+    rgba(5,7,13,0.3) 60%,
+    rgba(5,7,13,0.85) 100%);
   z-index: 1;
 }
 
-/* GRIGLIA INTERNA */
+/* CONTENITORE CENTRALE */
 .hero-inner {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 48px;
+  text-align: center;
+  padding: 80px 40px 60px;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1000px;
   margin: 0 auto;
+  gap: 0;
 }
 
-.hero-content {
-  max-width: 680px;
-  padding: 20px;
-}
-
-/* KICKER */
-.hero-kicker {
-  font-size: 0.8rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--neon);
-  margin-bottom: 20px;
-}
-
-/* LOGO + TITOLO AFFIANCATI */
-.hero-title-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.hero-logo {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-  flex-shrink: 0;
-  margin-top: 6px;
-  filter: drop-shadow(0 0 16px rgba(0,240,255,0.5));
-}
-
-.hero-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: clamp(2.6rem, 6vw, 5.6rem);
-  line-height: 0.95;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-/* TESTO */
-.hero-text {
-  margin-top: 22px;
-  max-width: 540px;
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--muted);
-}
-
-/* CTA BUTTONS */
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 32px;
-}
-
-/* CONTENITORE */
-.hero-thumb-wrap {
+/* LOGO GRANDE CENTRALE */
+.hero-logo-wrap {
   position: relative;
-  width: 100%;
-  margin-top: -120px; /* fa entrare l'immagine sotto la hero */
-  z-index: 1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
 }
 
-/* IMMAGINE */
-.hero-thumb {
-  width: 100%;
-  height: clamp(220px, 30vw, 420px);
-  object-fit: cover;
-  border: none;
-  border-radius: 0;
-
-  /* effetto “immersivo” */
-  opacity: 0.85;
-  filter: brightness(0.7) contrast(1.1) saturate(1.1);
-}
-
-/* GRADIENTE SOPRA (fondamentale per leggere il testo) */
-.hero-thumb-wrap::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(5,7,13,0.2) 0%,
-    rgba(5,7,13,0.85) 70%,
-    rgba(5,7,13,1) 100%
-  );
+.hero-logo-main {
+  width: clamp(220px, 38vw, 520px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 60px rgba(0,240,255,0.4));
+  position: relative;
   z-index: 2;
 }
 
-/* opzionale glow leggero */
-.hero-thumb-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 40px 120px rgba(0,240,255,0.15);
-  pointer-events: none;
-}
-
-/* VISUAL LATO DESTRO */
-.hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.logo {
-  width: clamp(340px, 48vw, 620px); 
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 0 80px rgba(0,240,255,0.45));
-}
 /* FUMO */
 #smokeLeft, #smokeRight {
   position: absolute;
-  width: 60px;
-  height: 120px;
+  width: 70px;
+  height: 140px;
   pointer-events: none;
   z-index: 5;
   filter: blur(25px);
   opacity: 0.8;
 }
-#smokeLeft  { left: 22%;  top: -10%; }
-#smokeRight { right: 18%; top: -12%; }
+#smokeLeft  { left: 18%;  top: -15%; }
+#smokeRight { right: 14%; top: -18%; }
+
+/* CONTENUTO TESTO */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+.hero-kicker {
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--neon);
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(9rem, 8vw, 5rem);
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.hero-text {
+  max-width: 560px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* BANNER SVAPO-MIX FULL WIDTH */
+.hero-banner-wrap {
+  position: relative;
+  width: 100%;
+  margin-top: 60px;
+  z-index: 2;
+}
+
+.hero-banner {
+  width: 100%;
+  height: clamp(260px, 35vw, 500px);
+  object-fit: cover;
+  display: block;
+  filter: blur(3px) brightness(0.65) saturate(1.2);
+}
+
+.hero-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5,7,13,0.7) 0%,
+    rgba(5,7,13,0.1) 40%,
+    rgba(5,7,13,0.1) 60%,
+    rgba(5,7,13,0.85) 100%
+  );
+}
 
 /* ============================================================
    BUTTONS
@@ -304,24 +276,19 @@ img { max-width: 100%; height: auto; display: block; }
    PRODOTTI – SCROLL STACK
 ============================================================ */
 .scroll-stack-scroller {
-  position: relative;
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
-  overflow: visible;
 }
 
 .scroll-stack-inner {
-  position: relative;
-  padding-bottom: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .scroll-stack-card {
   position: relative;
-  will-change: transform, filter;
-  transform-origin: top center;
-  backface-visibility: hidden;
-  margin-bottom: 100px;
 }
 
 /* CARD PRODOTTO */
@@ -387,22 +354,17 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* LISTA ESPANDIBILE */
 .product-list {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  padding: 0 20px;
+  display: none;
+  padding: 20px;
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   background: rgba(8, 13, 24, 0.85);
   backdrop-filter: blur(12px);
-  transition: max-height 0.45s ease, opacity 0.35s ease, padding 0.35s ease;
 }
 
 .product-list.open {
-  max-height: 600px;
-  opacity: 1;
-  padding: 20px;
+  display: block;
 }
 
 .product-list ul {
@@ -616,49 +578,13 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Mobile landscape / piccolo tablet */
 @media (max-width: 960px) {
-  .hero {
-    padding: 100px 24px 60px;
-  }
-
   .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    padding: 60px 24px 40px;
   }
 
-  .hero-overlay {
-    background: linear-gradient(180deg,
-      rgba(5,7,13,0.96) 0%,
-      rgba(5,7,13,0.74) 55%,
-      rgba(5,7,13,0.88) 100%);
+  .hero-banner {
+    height: clamp(200px, 45vw, 340px);
   }
-
-  .hero-visual { order: -1; }
-
-  .logo { width: clamp(140px, 40vw, 220px); }
-
-  .hero-content {
-    max-width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-title-row {
-    justify-content: center;
-  }
-
-  .hero-actions {
-    justify-content: center;
-  }
-
-  .hero-thumb-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .hero-thumb { max-width: 100%; }
 }
 
 /* Mobile */
@@ -678,9 +604,9 @@ img { max-width: 100%; height: auto; display: block; }
 
   .scroll-stack-scroller { max-width: 100%; }
 
-  .hero-title-row { gap: 12px; }
-  .hero-logo { width: 52px; height: 52px; margin-top: 4px; }
-  .hero-title { font-size: clamp(2rem, 10vw, 3rem); }
+  .hero-logo-main { width: clamp(160px, 55vw, 280px); }
+  .hero-title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+  .hero-banner { height: 220px; }
 
   .info-card { padding: 24px; }
 

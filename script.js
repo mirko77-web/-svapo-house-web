@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ============================================================
-// 3) SFONDO NUVOLOSO (una sola istanza, corretta)
+// 3) SFONDO FUMO COLORATO
 // ============================================================
 (function initCloud() {
   const canvas = document.getElementById("cloudCanvas");
@@ -54,40 +54,74 @@ document.addEventListener("DOMContentLoaded", () => {
   resize();
   window.addEventListener("resize", resize);
 
-  function cloudNoise(x, y, t) {
-    return (
-      Math.sin(x * 0.0015 + t * 0.20) +
-      Math.sin(y * 0.0012 + t * 0.15) +
-      Math.sin((x + y) * 0.0009 + t * 0.10)
-    ) * 0.33 + 0.5;
+  // Particelle di fumo
+  const particles = [];
+  const COUNT = 18;
+
+  function randomBetween(a, b) { return a + Math.random() * (b - a); }
+
+  // Colori: bianco/grigio chiaro con tocchi ciano e rosa
+  const COLORS = [
+    [220, 240, 255],  // bianco freddo
+    [200, 230, 250],  // grigio azzurrino
+    [0,   220, 240],  // ciano
+    [255, 50,  120],  // rosa
+    [180, 220, 255],  // grigio chiaro
+    [240, 240, 255],  // bianco puro
+  ];
+
+  for (let i = 0; i < COUNT; i++) {
+    const col = COLORS[Math.floor(Math.random() * COLORS.length)];
+    particles.push({
+      x:    randomBetween(0, 1),
+      y:    randomBetween(0, 1),
+      r:    randomBetween(0.12, 0.32),
+      dx:   randomBetween(-0.00012, 0.00012),
+      dy:   randomBetween(-0.00008, 0.00008),
+      a:    randomBetween(0.04, 0.13),
+      col:  col,
+      phase: randomBetween(0, Math.PI * 2),
+      speed: randomBetween(0.0004, 0.0012),
+    });
   }
 
   let t = 0;
 
-  function drawCloud() {
-    const img  = ctx.createImageData(w, h);
-    const data = img.data;
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
 
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) {
-        const n =
-          cloudNoise(x, y, t) * 0.6 +
-          cloudNoise(x * 0.6, y * 0.6, t * 0.7) * 0.4;
-        const v = n * 255;
-        const i = (y * w + x) * 4;
-        data[i]     = v;
-        data[i + 1] = v;
-        data[i + 2] = v;
-        data[i + 3] = 180;
-      }
-    }
+    // Sfondo scuro base
+    ctx.fillStyle = "#08090f";
+    ctx.fillRect(0, 0, w, h);
 
-    ctx.putImageData(img, 0, 0);
-    t += 0.0025;
-    requestAnimationFrame(drawCloud);
+    particles.forEach(p => {
+      // Movimento sinusoidale morbido
+      const px = (p.x + Math.sin(t * p.speed + p.phase) * 0.08 + 1) % 1;
+      const py = (p.y + Math.cos(t * p.speed * 0.7 + p.phase) * 0.05 + 1) % 1;
+
+      const gx = px * w;
+      const gy = py * h;
+      const gr = p.r * Math.min(w, h);
+
+      const grad = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
+      const [r, g, b] = p.col;
+      const alpha = p.a * (0.8 + 0.2 * Math.sin(t * 0.0008 + p.phase));
+
+      grad.addColorStop(0,   `rgba(${r},${g},${b},${alpha})`);
+      grad.addColorStop(0.4, `rgba(${r},${g},${b},${alpha * 0.4})`);
+      grad.addColorStop(1,   `rgba(${r},${g},${b},0)`);
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(gx, gy, gr, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    t++;
+    requestAnimationFrame(draw);
   }
 
-  drawCloud();
+  draw();
 })();
 
 // ============================================================
@@ -145,9 +179,9 @@ createSmoke("smokeLeft");
 createSmoke("smokeRight");
 
 // ============================================================
-// 5) SCROLL STACK – Vanilla JS
+// 5) SCROLL STACK – DISABILITATO
 // ============================================================
-(function initScrollStack() {
+/*(function initScrollStack() {
   const stacks = document.querySelectorAll('.scroll-stack-scroller');
   if (!stacks.length) return;
 
@@ -254,4 +288,4 @@ createSmoke("smokeRight");
   window.addEventListener('resize', () => { lastTransforms.clear(); update(); });
 
   update();
-})();
+})() */;

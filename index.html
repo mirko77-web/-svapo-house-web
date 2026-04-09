@@ -34,6 +34,8 @@
 
 <body>
 
+  <!-- SFONDO NUVOLOSO -->
+  <canvas id="cloudCanvas" aria-hidden="true"></canvas>
 
   <main>
 
@@ -74,15 +76,35 @@
 
       </div>
 
-      <!-- IMMAGINE SVAPO MIX – FULL WIDTH CON BLUR -->
-      <div class="hero-banner-wrap">
-        <img
-          src="svapo-mix.png"
-          alt="Prodotti Svapo House"
-          class="hero-banner"
-          loading="lazy"
-        />
-        <div class="hero-banner-overlay" aria-hidden="true"></div>
+     <!-- SLIDER IMMAGINI PRODOTTI – SCROLL AUTOMATICO -->
+      <div class="hero-slider-wrap">
+        <div class="hero-slider-overlay hero-slider-overlay--left" aria-hidden="true"></div>
+        <div class="hero-slider-overlay hero-slider-overlay--right" aria-hidden="true"></div>
+
+        <div class="hero-slider-track">
+          <!-- Serie 1 -->
+          <div class="hero-slide"><img src="uno.jpg" alt="Prodotto 1" loading="lazy"></div>
+          <div class="hero-slide"><img src="2.jpg" alt="Prodotto 2" loading="lazy"></div>
+          <div class="hero-slide"><img src="3.jpg" alt="Prodotto 3" loading="lazy"></div>
+          <div class="hero-slide"><img src="4.jpg" alt="Prodotto 4" loading="lazy"></div>
+          <div class="hero-slide"><img src="5.jpg" alt="Prodotto 5" loading="lazy"></div>
+          <div class="hero-slide"><img src="6.jpg" alt="Prodotto 6" loading="lazy"></div>
+          <!-- Serie 2 – duplicata per loop infinito -->
+          <div class="hero-slide"><img src="7.png" alt="Prodotto 1" loading="lazy"></div>
+          <div class="hero-slide"><img src="8.jpg" alt="Prodotto 2" loading="lazy"></div>
+          <div class="hero-slide"><img src="9.png" alt="Prodotto 3" loading="lazy"></div>
+          <div class="hero-slide"><img src="11.jpg" alt="Prodotto 4" loading="lazy"></div>
+          <div class="hero-slide"><img src="22.png" alt="Prodotto 5" loading="lazy"></div>
+          <div class="hero-slide"><img src="33.webp" alt="Prodotto 7" loading="lazy"></div>
+          <div class="hero-slide"><img src="44.webp" alt="Prodotto 8" loading="lazy"></div>
+          <div class="hero-slide"><img src="55.jpg" alt="prodotto 9" loading="lazy"></div>
+          <div class="hero-slide"><img src="66.png" alt="Prodotto 10" loading="lazy"></div>
+          <div class="hero-slide"><img src="77.png" alt="Prodotto 11" loading="lazy"></div>
+          <div class="hero-slide"><img src="88.png" alt="Prodotto 12" loading="lazy"></div>
+          <div class="hero-slide"><img src="100.png" alt="Prodotto 13" loading="lazy"></div>
+          <div class="hero-slide"><img src="222.png" alt="Prodotto 14" loading="lazy"></div>
+
+        </div>
       </div>
 
     </section>
@@ -226,6 +248,8 @@
       </div>
 
       <div class="contact-layout">
+
+        <!-- MAPPA -->
         <div class="map-card">
           <div class="map-embed">
             <iframe
@@ -238,28 +262,47 @@
           </div>
         </div>
 
-        <div class="info-card">
-          <div class="info-block">
-            <h3>Indirizzo</h3>
-            <p>Via Vittorio Emanuele, 28<br>74020 Avetrana (TA)</p>
+        <!-- COLONNA DESTRA: staff card + info -->
+        <div class="contact-right">
+
+          <!-- STAFF CARD -->
+          <div class="staff-card">
+            <img
+              src="jissss.png"
+              alt="Il team di Svapo House"
+              class="staff-img"
+              loading="lazy"
+            />
+            <div class="staff-text">
+              <p class="staff-name"></p>
+              <p class="staff-sub">Siamo qui per te ogni giorno</p>
+            </div>
           </div>
 
-          <div class="info-block">
-            <h3>Orari</h3>
-            <p>Lun–Sab: 9:00 – 20:00</p>
-            <p>Domenica: Chiuso</p>
+          <!-- INFO -->
+          <div class="info-card">
+            <div class="info-block">
+              <h3>Indirizzo</h3>
+              <p>Via Vittorio Emanuele, 28<br>74020 Avetrana (TA)</p>
+            </div>
+
+            <div class="info-block">
+              <h3>Orari</h3>
+              <p>Lun–Sab: 9:00 – 20:00</p>
+              <p>Domenica: Chiuso</p>
+            </div>
+
+            <div class="info-block">
+              <h3>Contatti</h3>
+              <a href="tel:+39351 921 2618" aria-label="Chiama Svapo House">+39 351 921 2618</a>
+              <a href="https://wa.me/393331234567?text=Ciao%20Svapo%20House!" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            </div>
+
+            <a href="https://wa.me/393519212618?text=Ciao%20Svapo%20House!" target="_blank" rel="noopener noreferrer" class="btn btn-primary wa-btn">
+              💬 Scrivici su WhatsApp
+            </a>
           </div>
 
-          <div class="info-block">
-            <h3>Contatti</h3>
-            <a href="tel:+393331234567" aria-label="Chiama Svapo House">+39 333 123 4567</a>
-            <a href="mailto:info@svapohouse.it">info@svapohouse.it</a>
-            <a href="https://wa.me/393331234567?text=Ciao%20Svapo%20House!" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          </div>
-
-          <a href="https://wa.me/393331234567?text=Ciao%20Svapo%20House!" target="_blank" rel="noopener noreferrer" class="btn btn-primary wa-btn">
-            💬 Scrivici su WhatsApp
-          </a>
         </div>
       </div>
     </section>
@@ -277,8 +320,7 @@
         <nav class="footer-links" aria-label="Link footer">
           <a href="#prodotti">Prodotti</a>
           <a href="#contatti">Contatti</a>
-          <a href="https://wa.me/393331234567?text=Ciao%20Svapo%20House!" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a href="mailto:info@svapohouse.it">Email</a>
+          <a href="https://wa.me/393519212618?text=Ciao%20Svapo%20House!" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </nav>
       </div>
 

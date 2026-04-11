@@ -1,4 +1,15 @@
 /* ============================================================
+   FONT TANKER
+============================================================ */
+@font-face {
+  font-family: 'Tanker';
+  src: url('Tanker-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
    VARIABILI & RESET
 ============================================================ */
 :root {
@@ -143,12 +154,31 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .hero-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 4rem);
-  line-height: 1.05;
-  font-weight: 700;
+  font-family: 'Tanker', sans-serif;
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 0.92;
+  font-weight: 400;
   text-transform: uppercase;
-  margin-bottom: 18px;
+  letter-spacing: 0.03em;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Riga piena – bianco */
+.hero-title-solid {
+  color: var(--text);
+  display: block;
+}
+
+/* Riga outline – solo bordo ciano */
+.hero-title-outline {
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--neon);
+  text-stroke: 2px var(--neon);
+  filter: drop-shadow(0 0 18px rgba(0,240,255,0.45));
 }
 
 .hero-text {
@@ -298,7 +328,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .section-title {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Tanker', sans-serif;
   font-size: clamp(2rem, 5vw, 4rem);
   text-transform: uppercase;
   line-height: 1;
@@ -382,7 +412,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .product-card h3 {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Tanker', sans-serif;
   font-size: 1.5rem;
   text-transform: uppercase;
 }
@@ -458,7 +488,7 @@ img { max-width: 100%; height: auto; display: block; }
 .brands-track:hover { animation-play-state: paused; }
 
 .brand-item {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Tanker', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -554,7 +584,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .staff-name {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Tanker', sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -592,7 +622,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .info-block h3 {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Tanker', sans-serif;
   text-transform: uppercase;
   font-size: 1.1rem;
   letter-spacing: 0.1em;
@@ -631,7 +661,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .footer-brand h2 {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Tanker', sans-serif;
   font-size: 1.8rem;
   letter-spacing: 0.15em;
   color: var(--text);

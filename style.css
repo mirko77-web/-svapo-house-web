@@ -166,13 +166,11 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 0;
 }
 
-/* Riga piena – bianco */
 .hero-title-solid {
   color: var(--text);
   display: block;
 }
 
-/* Riga outline – solo bordo ciano */
 .hero-title-outline {
   display: block;
   color: transparent;
@@ -205,7 +203,6 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
 }
 
-/* Fade sui bordi */
 .hero-slider-overlay {
   position: absolute;
   top: 0;
@@ -223,7 +220,6 @@ img { max-width: 100%; height: auto; display: block; }
   background: linear-gradient(270deg, #08090f 0%, transparent 100%);
 }
 
-/* TRACK – scorre in loop */
 .hero-slider-track {
   display: flex;
   gap: 20px;
@@ -241,7 +237,6 @@ img { max-width: 100%; height: auto; display: block; }
   to   { transform: translateX(-50%); }
 }
 
-/* SINGOLA SLIDE */
 .hero-slide {
   flex-shrink: 0;
   width: clamp(220px, 28vw, 380px);
@@ -363,7 +358,6 @@ img { max-width: 100%; height: auto; display: block; }
   position: relative;
 }
 
-/* CARD PRODOTTO */
 .product-card {
   padding: 36px 28px;
   border: 1px solid var(--border);
@@ -459,6 +453,221 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ============================================================
+   PULSANTE NICSALT
+============================================================ */
+.btn-nicsalt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.35);
+}
+
+.btn-nicsalt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.5);
+}
+
+/* ============================================================
+   MODAL NICSALT – OVERLAY
+============================================================ */
+.nicsalt-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.80);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeInOverlay 0.25s ease;
+}
+
+.nicsalt-overlay[hidden] {
+  display: none !important;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============================================================
+   MODAL NICSALT – BOX
+============================================================ */
+.nicsalt-modal {
+  background: #0f0f0f;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px 28px 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* SCROLLBAR modale */
+.nicsalt-modal::-webkit-scrollbar {
+  width: 6px;
+}
+.nicsalt-modal::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+}
+.nicsalt-modal::-webkit-scrollbar-thumb {
+  background: rgba(249,115,22,0.4);
+  border-radius: 10px;
+}
+
+/* ============================================================
+   MODAL NICSALT – HEADER
+============================================================ */
+.nicsalt-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.nicsalt-title-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.nicsalt-badge {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f97316;
+  margin-bottom: 2px;
+}
+
+.nicsalt-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f97316;
+  margin: 2px 0;
+  line-height: 1.1;
+}
+
+.nicsalt-title strong {
+  font-weight: 800;
+}
+
+.nicsalt-sub {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+.nicsalt-disponibili {
+  text-align: right;
+  font-size: 0.72rem;
+  color: #aaa;
+  line-height: 1.5;
+}
+
+.nicsalt-pills {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.pill {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.pill-1 {
+  background: #1e3a5f;
+  color: #60a5fa;
+}
+
+.pill-2 {
+  background: #7c2d12;
+  color: #fb923c;
+}
+
+.nicsalt-close {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.nicsalt-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ============================================================
+   MODAL NICSALT – GRIGLIA IMMAGINI
+============================================================ */
+.nicsalt-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.nicsalt-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.nicsalt-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.nicsalt-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+/* ============================================================
    BRAND SLIDER
 ============================================================ */
 .brands-section {
@@ -472,7 +681,6 @@ img { max-width: 100%; height: auto; display: block; }
 .brands-slider-wrap {
   position: relative;
   overflow: hidden;
-  /* Fade edges */
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
 }
@@ -518,7 +726,6 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: stretch;
 }
 
-/* MAPPA */
 .map-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -543,14 +750,12 @@ img { max-width: 100%; height: auto; display: block; }
   display: block;
 }
 
-/* COLONNA DESTRA */
 .contact-right {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* STAFF CARD */
 .staff-card {
   position: relative;
   border: 1px solid var(--border);
@@ -598,7 +803,6 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--muted);
 }
 
-/* INFO CARD */
 .info-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -706,19 +910,14 @@ img { max-width: 100%; height: auto; display: block; }
     grid-template-columns: 1fr;
     gap: 24px;
   }
-
   .map-embed { min-height: 360px; }
   .staff-card { min-height: 260px; }
 }
 
-/* Mobile landscape / piccolo tablet */
+/* Mobile landscape */
 @media (max-width: 960px) {
   .hero-inner {
     padding: 60px 24px 40px;
-  }
-
-  .hero-banner {
-    height: clamp(200px, 45vw, 340px);
   }
 }
 
@@ -760,6 +959,19 @@ img { max-width: 100%; height: auto; display: block; }
 
   .brands-section { padding: 40px 0; }
   .brand-item { font-size: 1rem; }
+
+  /* NicSalt modal su mobile */
+  .nicsalt-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nicsalt-modal {
+    padding: 20px 16px 24px;
+  }
+
+  .nicsalt-title {
+    font-size: 1.5rem;
+  }
 }
 
 /* Focus visibile per accessibilità */

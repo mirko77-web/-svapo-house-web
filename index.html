@@ -30,6 +30,312 @@
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       PULSANTE NICSALT
+    ══════════════════════════════════════════ */
+    .btn-nicsalt {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 16px;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, #1102e0, #fb923c);
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(249,115,22,0.35);
+    }
+    .btn-nicsalt:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(249,115,22,0.5);
+    }
+
+    /* ══════════════════════════════════════════
+       MODAL NICSALT – OVERLAY
+    ══════════════════════════════════════════ */
+    .nicsalt-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(6px);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeInOverlay 0.25s ease;
+    }
+    .nicsalt-overlay[hidden] { display: none !important; }
+
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ══════════════════════════════════════════
+       MODAL NICSALT – BOX
+    ══════════════════════════════════════════ */
+    .nicsalt-modal {
+      background: #0f0f0f;
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px 28px 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      animation: slideUp 0.3s ease;
+    }
+    .nicsalt-modal::-webkit-scrollbar { width: 6px; }
+    .nicsalt-modal::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); border-radius: 10px; }
+    .nicsalt-modal::-webkit-scrollbar-thumb { background: rgba(249,115,22,0.4); border-radius: 10px; }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    /* ══════════════════════════════════════════
+       HEADER MODAL
+    ══════════════════════════════════════════ */
+    .nicsalt-modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .nicsalt-title-wrap { display: flex; flex-direction: column; }
+    .nicsalt-badge {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 2px;
+    }
+    .nicsalt-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #f97316;
+      margin: 2px 0;
+      line-height: 1.1;
+    }
+    .nicsalt-title strong { font-weight: 800; }
+    .nicsalt-sub { font-size: 0.85rem; color: #aaa; margin-top: 2px; }
+    .nicsalt-disponibili { text-align: right; font-size: 0.72rem; color: #aaa; line-height: 1.5; }
+    .nicsalt-pills { display: flex; gap: 6px; justify-content: flex-end; margin-top: 6px; }
+    .pill { padding: 4px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+    .pill-1 { background: #1e3a5f; color: #60a5fa; }
+    .pill-2 { background: #7c2d12; color: #fb923c; }
+    .nicsalt-close {
+      background: rgba(255,255,255,0.08);
+      border: none; color: #fff;
+      font-size: 1.2rem;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .nicsalt-close:hover { background: rgba(255,255,255,0.18); }
+
+    /* ══════════════════════════════════════════
+       GRIGLIA THUMBNAIL
+    ══════════════════════════════════════════ */
+    .nicsalt-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .nicsalt-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .nicsalt-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(249,115,22,0.5);
+    }
+    .nicsalt-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+    }
+
+    /* ══════════════════════════════════════════
+       LIGHTBOX FULLSCREEN
+    ══════════════════════════════════════════ */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.97);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInOverlay 0.2s ease;
+    }
+    .lightbox-overlay[hidden] { display: none !important; }
+
+    /* Immagine principale */
+    .lightbox-img-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+      padding: 70px 90px 120px;
+    }
+    .lightbox-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 0 80px rgba(249,115,22,0.12);
+      animation: zoomIn 0.25s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.94); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* Tasto chiudi */
+    .lightbox-close {
+      position: absolute;
+      top: 18px; right: 22px;
+      background: rgba(255,255,255,0.1);
+      border: none; color: #fff;
+      font-size: 1.3rem;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .lightbox-close:hover { background: rgba(249,115,22,0.5); }
+
+    /* Frecce */
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 2rem;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      z-index: 2;
+    }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background: rgba(249,115,22,0.4);
+      border-color: rgba(249,115,22,0.7);
+    }
+    .lightbox-prev:disabled,
+    .lightbox-next:disabled {
+      opacity: 0.2;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* Contatore */
+    .lightbox-counter {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.12em;
+      pointer-events: none;
+    }
+
+    /* Strip thumbnail in basso */
+    .lightbox-strip {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      max-width: 88vw;
+      overflow-x: auto;
+      padding: 4px 2px;
+      scrollbar-width: none;
+    }
+    .lightbox-strip::-webkit-scrollbar { display: none; }
+
+    .lightbox-strip-thumb {
+      flex-shrink: 0;
+      width: 56px; height: 56px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      opacity: 0.45;
+      transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .lightbox-strip-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .lightbox-strip-thumb:hover { opacity: 0.75; transform: scale(1.05); }
+    .lightbox-strip-thumb.active {
+      border-color: #f97316;
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE MOBILE
+    ══════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .nicsalt-grid { grid-template-columns: repeat(2, 1fr); }
+      .nicsalt-modal { padding: 20px 16px 24px; }
+      .nicsalt-title { font-size: 1.5rem; }
+
+      .lightbox-img-wrap { padding: 60px 50px 110px; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+      .lightbox-prev,
+      .lightbox-next { width: 42px; height: 42px; font-size: 1.4rem; }
+      .lightbox-strip-thumb { width: 44px; height: 44px; }
+    }
+  </style>
 </head>
 
 <body>
@@ -47,20 +353,12 @@
       <div class="hero-overlay" aria-hidden="true"></div>
 
       <div class="hero-inner">
-
-        <!-- LOGO CENTRALE GRANDE -->
         <div class="hero-logo-wrap">
           <canvas id="smokeLeft" aria-hidden="true"></canvas>
           <canvas id="smokeRight" aria-hidden="true"></canvas>
-          <img
-            src="svapo.png"
-            alt="Svapo House"
-            class="hero-logo-main"
-            loading="eager"
-          />
+          <img src="svapo.png" alt="Svapo House" class="hero-logo-main" loading="eager" />
         </div>
 
-        <!-- TITOLO + TESTO -->
         <header class="hero-content">
           <p class="hero-kicker">Svapo House • Avetrana</p>
           <h1 class="hero-title">Vape, liquidi e dispositivi con stile.</h1>
@@ -73,44 +371,37 @@
             <a href="#contatti" class="btn btn-secondary">Contattaci</a>
           </div>
         </header>
-
       </div>
 
-     <!-- SLIDER IMMAGINI PRODOTTI – SCROLL AUTOMATICO -->
       <div class="hero-slider-wrap">
         <div class="hero-slider-overlay hero-slider-overlay--left" aria-hidden="true"></div>
         <div class="hero-slider-overlay hero-slider-overlay--right" aria-hidden="true"></div>
-
         <div class="hero-slider-track">
-          <!-- Serie 1 -->
-          <div class="hero-slide"><img src="uno.jpg" alt="Prodotto 1" loading="lazy"></div>
-          <div class="hero-slide"><img src="2.jpg" alt="Prodotto 2" loading="lazy"></div>
-          <div class="hero-slide"><img src="3.jpg" alt="Prodotto 3" loading="lazy"></div>
-          <div class="hero-slide"><img src="4.jpg" alt="Prodotto 4" loading="lazy"></div>
-          <div class="hero-slide"><img src="5.jpg" alt="Prodotto 5" loading="lazy"></div>
-          <div class="hero-slide"><img src="6.jpg" alt="Prodotto 6" loading="lazy"></div>
-          <!-- Serie 2 – duplicata per loop infinito -->
-          <div class="hero-slide"><img src="7.png" alt="Prodotto 1" loading="lazy"></div>
-          <div class="hero-slide"><img src="8.jpg" alt="Prodotto 2" loading="lazy"></div>
-          <div class="hero-slide"><img src="9.png" alt="Prodotto 3" loading="lazy"></div>
-          <div class="hero-slide"><img src="11.jpg" alt="Prodotto 4" loading="lazy"></div>
-          <div class="hero-slide"><img src="22.png" alt="Prodotto 5" loading="lazy"></div>
-          <div class="hero-slide"><img src="33.webp" alt="Prodotto 7" loading="lazy"></div>
-          <div class="hero-slide"><img src="44.webp" alt="Prodotto 8" loading="lazy"></div>
-          <div class="hero-slide"><img src="55.jpg" alt="prodotto 9" loading="lazy"></div>
-          <div class="hero-slide"><img src="66.png" alt="Prodotto 10" loading="lazy"></div>
-          <div class="hero-slide"><img src="77.png" alt="Prodotto 11" loading="lazy"></div>
-          <div class="hero-slide"><img src="88.png" alt="Prodotto 12" loading="lazy"></div>
-          <div class="hero-slide"><img src="100.png" alt="Prodotto 13" loading="lazy"></div>
-          <div class="hero-slide"><img src="222.png" alt="Prodotto 14" loading="lazy"></div>
-
+          <div class="hero-slide"><img src="uno.jpg"  alt="Prodotto 1"  loading="lazy"></div>
+          <div class="hero-slide"><img src="2.jpg"    alt="Prodotto 2"  loading="lazy"></div>
+          <div class="hero-slide"><img src="3.jpg"    alt="Prodotto 3"  loading="lazy"></div>
+          <div class="hero-slide"><img src="4.jpg"    alt="Prodotto 4"  loading="lazy"></div>
+          <div class="hero-slide"><img src="5.jpg"    alt="Prodotto 5"  loading="lazy"></div>
+          <div class="hero-slide"><img src="6.jpg"    alt="Prodotto 6"  loading="lazy"></div>
+          <div class="hero-slide"><img src="7.png"    alt="Prodotto 7"  loading="lazy"></div>
+          <div class="hero-slide"><img src="8.jpg"    alt="Prodotto 8"  loading="lazy"></div>
+          <div class="hero-slide"><img src="9.png"    alt="Prodotto 9"  loading="lazy"></div>
+          <div class="hero-slide"><img src="11.jpg"   alt="Prodotto 10" loading="lazy"></div>
+          <div class="hero-slide"><img src="22.png"   alt="Prodotto 11" loading="lazy"></div>
+          <div class="hero-slide"><img src="33.webp"  alt="Prodotto 12" loading="lazy"></div>
+          <div class="hero-slide"><img src="44.webp"  alt="Prodotto 13" loading="lazy"></div>
+          <div class="hero-slide"><img src="55.jpg"   alt="Prodotto 14" loading="lazy"></div>
+          <div class="hero-slide"><img src="66.png"   alt="Prodotto 15" loading="lazy"></div>
+          <div class="hero-slide"><img src="77.png"   alt="Prodotto 16" loading="lazy"></div>
+          <div class="hero-slide"><img src="88.png"   alt="Prodotto 17" loading="lazy"></div>
+          <div class="hero-slide"><img src="100.png"  alt="Prodotto 18" loading="lazy"></div>
+          <div class="hero-slide"><img src="222.png"  alt="Prodotto 19" loading="lazy"></div>
         </div>
       </div>
-
     </section>
 
     <!-- ============================================================
-         PRODOTTI – SCROLL STACK
+         PRODOTTI
     ============================================================ -->
     <section class="products-section" id="prodotti" aria-labelledby="prodotti-title">
       <div class="section-head">
@@ -133,19 +424,14 @@
               <span class="expand-arrow" aria-hidden="true">↓</span>
             </article>
             <div class="product-list" id="lista-liquidi" role="region" aria-label="Lista liquidi">
-              <ul>
-                <li>FANTASI</li><li>DON CRISTO</li><li>VAPOR ART</li>
-                <li>FLAVOURART</li><li>POLAR TNT</li><li>LA TABACCHERIA</li>
-                <li>DREAMODS</li><li>SUPREME</li><li>SUPER</li>
-                <li>GALAKTIKA</li><li>CYBERFLAVOUR</li><li>GOLDWAVE</li>
-                <li>ELFLIQ</li><li>KING LIQUID</li><li>RELOAD</li>
-                <li>ENJOY SVAPO</li><li>NEX OS</li><li>Open Bar</li>
-                <li>Svapo Next</li><li>Seven Wonders</li>
-              </ul>
+            
+              <button class="btn-nicsalt" id="openNicSalt" aria-haspopup="dialog">
+                🧂 NicSalt 10 ml
+              </button>
             </div>
           </div>
 
-          <!-- CARD 2: SIGARETTE ELETTRONICHE -->
+          <!-- CARD 2: SIGARETTE -->
           <div class="scroll-stack-card">
             <article class="product-card expandable" id="btn-sige" role="button" tabindex="0" aria-expanded="false" aria-controls="lista-sige">
               <span class="product-icon" aria-hidden="true">⚡</span>
@@ -205,7 +491,6 @@
     <section class="brands-section" aria-label="I nostri brand">
       <div class="brands-slider-wrap">
         <div class="brands-track" aria-hidden="true">
-          <!-- Duplichiamo per loop infinito -->
           <span class="brand-item">FANTASI</span>
           <span class="brand-item">DON CRISTO</span>
           <span class="brand-item">VAPOR ART</span>
@@ -218,7 +503,6 @@
           <span class="brand-item">CYBERFLAVOUR</span>
           <span class="brand-item">LA TABACCHERIA</span>
           <span class="brand-item">UWELL</span>
-          <!-- duplicato per loop -->
           <span class="brand-item">FANTASI</span>
           <span class="brand-item">DON CRISTO</span>
           <span class="brand-item">VAPOR ART</span>
@@ -248,61 +532,44 @@
       </div>
 
       <div class="contact-layout">
-
-        <!-- MAPPA -->
         <div class="map-card">
           <div class="map-embed">
             <iframe
               src="https://www.google.com/maps?q=Via+Vittorio+Emanuele,+28,+74020+Avetrana&output=embed"
-              loading="lazy"
-              allowfullscreen
-              referrerpolicy="no-referrer-when-downgrade"
+              loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
               title="Mappa Svapo House – Via Vittorio Emanuele 28, Avetrana">
             </iframe>
           </div>
         </div>
 
-        <!-- COLONNA DESTRA: staff card + info -->
         <div class="contact-right">
-
-          <!-- STAFF CARD -->
           <div class="staff-card">
-            <img
-              src="jissss.png"
-              alt="Il team di Svapo House"
-              class="staff-img"
-              loading="lazy"
-            />
+            <img src="jissss.png" alt="Il team di Svapo House" class="staff-img" loading="lazy" />
             <div class="staff-text">
               <p class="staff-name"></p>
               <p class="staff-sub">Siamo qui per te ogni giorno</p>
             </div>
           </div>
 
-          <!-- INFO -->
           <div class="info-card">
             <div class="info-block">
               <h3>Indirizzo</h3>
               <p>Via Vittorio Emanuele, 28<br>74020 Avetrana (TA)</p>
             </div>
-
             <div class="info-block">
               <h3>Orari</h3>
               <p>Lun–Sab: 9:00 – 20:00</p>
               <p>Domenica: Chiuso</p>
             </div>
-
             <div class="info-block">
               <h3>Contatti</h3>
               <a href="tel:+39351 921 2618" aria-label="Chiama Svapo House">+39 351 921 2618</a>
               <a href="https://wa.me/393331234567?text=Ciao%20Svapo%20House!" target="_blank" rel="noopener noreferrer">WhatsApp</a>
             </div>
-
             <a href="https://wa.me/393519212618?text=Ciao%20Svapo%20House!" target="_blank" rel="noopener noreferrer" class="btn btn-primary wa-btn">
               💬 Scrivici su WhatsApp
             </a>
           </div>
-
         </div>
       </div>
     </section>
@@ -316,21 +583,219 @@
           <h2>SVAPO HOUSE</h2>
           <p>Liquidi, dispositivi e assistenza ad Avetrana.</p>
         </div>
-
         <nav class="footer-links" aria-label="Link footer">
           <a href="#prodotti">Prodotti</a>
           <a href="#contatti">Contatti</a>
           <a href="https://wa.me/393519212618?text=Ciao%20Svapo%20House!" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </nav>
       </div>
-
       <div class="footer-bottom">
         <p>© 2026 Svapo House. Tutti i diritti riservati. — Via Vittorio Emanuele 28, Avetrana (TA)</p>
       </div>
     </footer>
 
+    <!-- ============================================================
+         MODAL NICSALT (griglia thumbnail)
+    ============================================================ -->
+    <div class="nicsalt-overlay" id="nicsaltModal" role="dialog" aria-modal="true" aria-label="Catalogo NicSalt 10ml" hidden>
+      <div class="nicsalt-modal">
+
+        <div class="nicsalt-modal-header">
+          <div class="nicsalt-title-wrap">
+            <span class="nicsalt-badge">sali di nicotina</span>
+            <h2 class="nicsalt-title">NicSalt <strong>10 ml</strong></h2>
+            <p class="nicsalt-sub">• nicotina in sali •</p>
+          </div>
+          <div class="nicsalt-disponibili">
+            <span>disponibili con sali di nicotina</span>
+            <div class="nicsalt-pills">
+              <span class="pill pill-1">1%</span>
+              <span class="pill pill-2">2%</span>
+            </div>
+          </div>
+          <button class="nicsalt-close" id="closeNicSalt" aria-label="Chiudi catalogo">✕</button>
+        </div>
+
+        <!-- Inserisci qui le tue immagini – ogni nicsalt-item ha data-index -->
+        <div class="nicsalt-grid" id="nicsaltGrid">
+          <div class="nicsalt-item" data-index="0"><img  src="c1.png" alt="catalogo"loading="lazy"></div>
+          <div class="nicsalt-item" data-index="1"><img  src="cat2.png" alt="catalogo"loading="lazy"></div>
+          <div class="nicsalt-item" data-index="2"><img  src="cat3.png" alt="catalogo"loading="lazy"></div>
+        
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================================
+         LIGHTBOX FULLSCREEN
+    ============================================================ -->
+    <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Visualizzatore immagine" hidden>
+
+      <button class="lightbox-close" id="lightboxClose" aria-label="Chiudi">✕</button>
+      <button class="lightbox-prev"  id="lightboxPrev"  aria-label="Precedente">‹</button>
+      <button class="lightbox-next"  id="lightboxNext"  aria-label="Successiva">›</button>
+
+      <div class="lightbox-img-wrap">
+        <img id="lightboxImg" src="" alt="" />
+      </div>
+
+      <div class="lightbox-counter" id="lightboxCounter"></div>
+      <div class="lightbox-strip"   id="lightboxStrip"></div>
+
+    </div>
+
   </main>
 
   <script src="script.js"></script>
+
+  <script>
+    /* ══════════════════════════════════════════
+       MODAL NICSALT
+    ══════════════════════════════════════════ */
+    const openBtn  = document.getElementById('openNicSalt');
+    const closeBtn = document.getElementById('closeNicSalt');
+    const modal    = document.getElementById('nicsaltModal');
+
+    openBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    });
+
+    closeBtn.addEventListener('click', chiudiModal);
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) chiudiModal();
+    });
+
+    function chiudiModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      openBtn.focus();
+    }
+
+    /* ══════════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════════ */
+    const lightbox  = document.getElementById('lightboxOverlay');
+    const lbImg     = document.getElementById('lightboxImg');
+    const lbClose   = document.getElementById('lightboxClose');
+    const lbPrev    = document.getElementById('lightboxPrev');
+    const lbNext    = document.getElementById('lightboxNext');
+    const lbCounter = document.getElementById('lightboxCounter');
+    const lbStrip   = document.getElementById('lightboxStrip');
+    const grid      = document.getElementById('nicsaltGrid');
+
+    // Tutte le immagini della griglia
+    const items = Array.from(grid.querySelectorAll('.nicsalt-item img'));
+    let currentIndex = 0;
+
+    // Costruisce i thumbnail nella strip del lightbox
+    items.forEach(function(img, i) {
+      const thumb = document.createElement('div');
+      thumb.className = 'lightbox-strip-thumb';
+      const t = document.createElement('img');
+      t.src = img.src;
+      t.alt = img.alt;
+      thumb.appendChild(t);
+      thumb.addEventListener('click', function() { apriLightbox(i); });
+      lbStrip.appendChild(thumb);
+    });
+
+    // Click su thumbnail nella griglia → apre lightbox
+    grid.addEventListener('click', function(e) {
+      const item = e.target.closest('.nicsalt-item');
+      if (!item) return;
+      apriLightbox(parseInt(item.dataset.index, 10));
+    });
+
+    function apriLightbox(idx) {
+      currentIndex = idx;
+      aggiornaLightbox();
+      lightbox.hidden = false;
+      lbClose.focus();
+    }
+
+    function chiudiLightbox() {
+      lightbox.hidden = true;
+    }
+
+    function aggiornaLightbox() {
+      var img = items[currentIndex];
+
+      // Aggiorna src con animazione
+      lbImg.style.animation = 'none';
+      lbImg.offsetHeight; // reflow
+      lbImg.style.animation = '';
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+
+      // Contatore
+      lbCounter.textContent = (currentIndex + 1) + ' / ' + items.length;
+
+      // Stato frecce
+      lbPrev.disabled = currentIndex === 0;
+      lbNext.disabled = currentIndex === items.length - 1;
+
+      // Strip: aggiorna classe active
+      var thumbs = lbStrip.querySelectorAll('.lightbox-strip-thumb');
+      thumbs.forEach(function(t, i) {
+        t.classList.toggle('active', i === currentIndex);
+      });
+      // Scrolla strip per centrare thumb attivo
+      if (thumbs[currentIndex]) {
+        thumbs[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+
+    // Chiudi
+    lbClose.addEventListener('click', chiudiLightbox);
+
+    // Frecce
+    lbPrev.addEventListener('click', function() {
+      if (currentIndex > 0) { currentIndex--; aggiornaLightbox(); }
+    });
+    lbNext.addEventListener('click', function() {
+      if (currentIndex < items.length - 1) { currentIndex++; aggiornaLightbox(); }
+    });
+
+    // Click fuori dall'immagine chiude
+    lightbox.addEventListener('click', function(e) {
+      if (
+        !e.target.closest('.lightbox-img-wrap') &&
+        !e.target.closest('.lightbox-prev') &&
+        !e.target.closest('.lightbox-next') &&
+        !e.target.closest('.lightbox-close') &&
+        !e.target.closest('.lightbox-strip')
+      ) {
+        chiudiLightbox();
+      }
+    });
+
+    // Tastiera: ← → Esc
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.hidden) {
+        if (e.key === 'ArrowLeft'  && currentIndex > 0)                { currentIndex--; aggiornaLightbox(); }
+        if (e.key === 'ArrowRight' && currentIndex < items.length - 1) { currentIndex++; aggiornaLightbox(); }
+        if (e.key === 'Escape') chiudiLightbox();
+      } else if (!modal.hidden && e.key === 'Escape') {
+        chiudiModal();
+      }
+    });
+
+    // Swipe touch (mobile)
+    var touchStartX = 0;
+    lightbox.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) {
+      var diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) < 40) return;
+      if (diff > 0 && currentIndex < items.length - 1) { currentIndex++; aggiornaLightbox(); }
+      if (diff < 0 && currentIndex > 0)                { currentIndex--; aggiornaLightbox(); }
+    }, { passive: true });
+  </script>
+
 </body>
 </html>

@@ -175,7 +175,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: block;
   color: transparent;
   -webkit-text-stroke: 2px var(--neon);
-  text-stroke: 2px var(--neon);
+  text-shadow:2px var(--neon);
   filter: drop-shadow(0 0 18px rgba(0,240,255,0.45));
 }
 

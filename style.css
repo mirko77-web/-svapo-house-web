@@ -54,9 +54,10 @@ img { max-width: 100%; height: auto; display: block; }
   height: 100vh;
   z-index: -1;
   pointer-events: none;
-  filter: blur(40px);
-  opacity: 1;
+  filter: blur(60px);
+  opacity: 0.9;
 }
+
 
 /* ============================================================
    HERO
@@ -979,4 +980,38 @@ img { max-width: 100%; height: auto; display: block; }
   outline: 2px solid var(--neon);
   outline-offset: 4px;
   border-radius: 4px;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.social-card {
+  display: block;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.social-icon-wrap {
+  margin-bottom: 1rem;
+}
+
+.social-handle,
+.btn-social-google {
+  margin-top: 1rem;
+  display: inline-block;
+  font-weight: 600;
+  color: var(--brand-primary);
 }

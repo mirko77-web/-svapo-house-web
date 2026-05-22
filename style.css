@@ -1015,3 +1015,27 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 600;
   color: var(--brand-primary);
 }
+
+/* ============================================================
+   CANVAS PARTICELLE LUMINOSE
+============================================================ */
+#backgroundParticles {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -3;
+  pointer-events: none;
+}
+
+/* ============================================================
+   CANVAS POLVERE CHE SALE
+============================================================ */
+#dustParticles {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -4;
+  pointer-events: none;
+}
